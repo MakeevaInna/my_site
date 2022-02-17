@@ -40,6 +40,15 @@ ul {
     flex: 1;
 }
 
+.header-logo a {
+    color: #000;
+    text-decoration: none;
+}
+
+.header-logo a:hover {
+    text-decoration: none;
+}
+
 .header-logo img {
     margin-left: 20px;
     width: 90px;
@@ -409,7 +418,6 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Montserrat, sans-serif;
 }
 
 a {

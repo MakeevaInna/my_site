@@ -27,8 +27,8 @@
                     <a href="#">Оплата</a>
                     <a href="#">Доставка</a>
                     <a href="#">Контакти</a>
-                    <a href="authorization.html"><img id="user" src="images/user.png" alt="user-profile"/></a>
-                    <a href="shopping-cart.html"><img id="cart" src="images/shopping-cart.png" alt="shopping-cart"/></a>
+                    <a href="authorization.php"><img id="user" src="images/user.png" alt="user-profile"/></a>
+                    <a href="shopping-cart.php"><img id="cart" src="images/shopping-cart.png" alt="shopping-cart"/></a>
                 </nav>
             </div>
         </header>
@@ -40,9 +40,9 @@
                 <a href="#"><img src="images/vitamins.jpeg" alt="Vitamins"/></a>
                 <a href="#"><h2>Вітаміни</h2></a>
                 <ul>
-                    <li><a href="products/vitaminA.html">Вітамін A</a></li>
-                    <li><a href="products/vitaminE.html">Вітамін Є</a></li>
-                    <li><a href="products/vitaminD.html">Вітамін D</a></li>
+                    <li><a href="products/vitaminA.php">Вітамін A</a></li>
+                    <li><a href="products/vitaminE.php">Вітамін Є</a></li>
+                    <li><a href="products/vitaminD.php">Вітамін D</a></li>
                 </ul>
             </div>
             <div class="minerals">

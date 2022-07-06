@@ -1,0 +1,23 @@
+{
+    "name": "innettemakeeva/mysite",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Core\\" : "./core",
+            "Base\\" : "./core/base",
+            "App\\" : "./app",
+            "Psr\\" : "./Psr",
+            "Exceptions\\" : "./exceptions"
+        }
+    },
+    "authors": [
+        {
+            "name": "Inna Makeeva",
+            "email": "inna18.08.87@gmail.com"
+        }
+    ],
+    "require": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "friendsofphp/php-cs-fixer": "3.4"
+    }
+}

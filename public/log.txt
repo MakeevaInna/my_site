@@ -1,0 +1,2 @@
+2022-07-06 15:12:06  Рівень помилки: info  Повідомлення: Товар з артікулом 123 не знайдено! {"line":21,"file":"\/Users\/innettemakeeva\/PhpstormProjects\/mysite\/app\/models\/Storage.php"}
+2022-07-06 15:12:56  Рівень помилки: info  Повідомлення: Товар з артікулом 12345 не знайдено! {"line":21,"file":"\/Users\/innettemakeeva\/PhpstormProjects\/mysite\/app\/models\/Storage.php"}

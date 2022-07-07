@@ -6,7 +6,6 @@
             "Core\\" : "./core",
             "Base\\" : "./core/base",
             "App\\" : "./app",
-            "Psr\\" : "./Psr",
             "Exceptions\\" : "./exceptions"
         }
     },
@@ -19,6 +18,7 @@
     "require": {
         "squizlabs/php_codesniffer": "^3.7",
         "friendsofphp/php-cs-fixer": "3.4",
-        "monolog/monolog": "^3.1"
+        "monolog/monolog": "^3.1",
+        "innette/logger": "dev-master"
     }
 }

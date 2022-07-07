@@ -18,7 +18,6 @@
                     <label class="search-label">
                         <input class="search-input" type="text" name="id" placeholder=" Пошук"/>
                         <button class="search-button" type="submit"><img class="search-icon" src="images/images-main/search.png" alt="Search"/></button>
-                        <!---<a href="search"><img class="search-icon" src="images/images-main/search.png" alt="Search"/></a>-->
                     </label>
                 </form>
             </div>

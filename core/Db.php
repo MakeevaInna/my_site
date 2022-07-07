@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use Psr\Log\FileStaticLogger;
+use Innette\Logger\FileStaticLogger;
 
 require_once ROOT . '/config/config.php';
 

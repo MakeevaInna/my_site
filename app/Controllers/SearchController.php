@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Base\Controller;
 use Exceptions\IdNotFound;
 use App\models\Storage;
-use Psr\Log\FileStaticLogger;
+use Innette\Logger\FileStaticLogger;
 
 class SearchController extends Controller
 {

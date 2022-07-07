@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2811d18fb66e992691e0db82a1b1a574",
+    "content-hash": "04c8059f6552e1c7c3a6494e734693cc",
     "packages": [
         {
             "name": "composer/pcre",
@@ -460,6 +460,41 @@
                 }
             ],
             "time": "2021-12-11T16:25:08+00:00"
+        },
+        {
+            "name": "innette/logger",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MakeevaInna/logger.git",
+                "reference": "2ff6cfa6604c3ea6f56c7cf43dbc1ae3167400d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MakeevaInna/logger/zipball/2ff6cfa6604c3ea6f56c7cf43dbc1ae3167400d5",
+                "reference": "2ff6cfa6604c3ea6f56c7cf43dbc1ae3167400d5",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Innette\\Logger\\": "log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Innette",
+                    "email": "email@example.com"
+                }
+            ],
+            "description": "My logger",
+            "support": {
+                "issues": "https://github.com/MakeevaInna/logger/issues",
+                "source": "https://github.com/MakeevaInna/logger/tree/master"
+            },
+            "time": "2022-07-07T13:48:01+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2182,7 +2217,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "innette/logger": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

@@ -3,7 +3,7 @@
 error_reporting(-1);
 
 use Core\Router;
-use Psr\Log\FileStaticLogger;
+use Innette\Logger\FileStaticLogger;
 
 define('ROOT', dirname(__DIR__));
 define('APP', dirname(__DIR__) . '/app');

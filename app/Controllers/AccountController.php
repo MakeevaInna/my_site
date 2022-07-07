@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use Base\Controller;
-use App\models\Account;
+use App\Models\Account;
 
 class AccountController extends Controller
 {

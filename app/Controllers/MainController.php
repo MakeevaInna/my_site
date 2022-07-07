@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use Base\Controller;
-use App\models\Main;
+use App\Models\Main;
 
 class MainController extends Controller
 {

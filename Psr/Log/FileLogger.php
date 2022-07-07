@@ -47,10 +47,10 @@ class FileLogger implements LoggerInterface
     public function log($level, $message, array $context = []): void
     {
         $template = "{date} {level} {message} {context}";
-        if (!file_exists('log.txt')) {
-            file_put_contents('log.txt', '');
+        if (!file_exists('logs/log.txt')) {
+            file_put_contents('logs/log.txt', '');
         }
-        file_put_contents('log.txt', trim(strtr($template, [
+        file_put_contents('logs/log.txt', trim(strtr($template, [
                 '{date}' => date('Y-m-d H:i:s'),
                 '{level}' => ' Рівень помилки: ' . $level,
                 '{message}' => ' Повідомлення: ' . $message,

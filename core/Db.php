@@ -8,14 +8,10 @@ require_once ROOT . '/config/config.php';
 
 class DB
 {
-    private static $dbObject;
-    private $dbConnection;
+    private static DB $dbObject;
+    private \PDO $dbConnection;
 
     private function __clone()
-    {
-    }
-
-    private function __wakeup()
     {
     }
 
@@ -29,7 +25,7 @@ class DB
                 OPTIONS
             );
         } catch (\PDOException $e) {
-            print "Ошибка подключения к базе данных!";
+            print "Помілка підключення до бази данних!";
             FileStaticLogger::error($e->getMessage(), [
                 'line' => $e->getLine(),
                 'file' => $e->getFile()
@@ -43,22 +39,6 @@ class DB
         if (!isset(self::$dbObject)) {
             self::$dbObject = new DB();
         }
-        return self::$dbObject;
-    }
-
-    public function execute($sql)
-    {
-        $stmt = $this->dbConnection->prepare($sql);
-        return $stmt->execute();
-    }
-
-    public function query($sql)
-    {
-        $stmt = $this->dbConnection->prepare($sql);
-        $res = $stmt->execute();
-        if ($res !== false) {
-            return $stmt->fetchAll();
-        }
-        return [];
+        return self::$dbObject->dbConnection;
     }
 }

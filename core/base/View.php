@@ -11,7 +11,7 @@ class View
     public function __construct($route, $layout = '', $view = '')
     {
         $this->route = $route;
-        $this->layout = $layout ?: LAYOUT; //если не было передано значение - используется константа с дефолтным знач
+        $this->layout = $layout ?: LAYOUT;
         $this->view = $view;
     }
 
@@ -33,6 +33,21 @@ class View
             require $file_layout;
         } else {
             echo "Не найден $file_layout"; // exception
+        }
+    }
+
+    public function redirect($url)
+    {
+        header('Location:' . $url);
+        exit();
+    }
+
+    public static function errorCode()
+    {
+        if (file_exists(APP . '/Views/error/404.php')) {
+            http_response_code(404);
+            require APP . '/Views/error/404.php';
+            exit;
         }
     }
 }

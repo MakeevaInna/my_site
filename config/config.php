@@ -4,7 +4,7 @@
  * DB settings
  */
 
-const DB_HOST = 'a_level_nix_mysql:3306';
+const DB_HOST = 'localhost:3131';
 const DB_NAME = 'a_level_nix_mysql';
 const DB_USER = 'root';
 const DB_PASSWORD = 'cbece_gead-cebfa';

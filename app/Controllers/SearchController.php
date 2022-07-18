@@ -10,7 +10,6 @@ use Innette\Logger\FileStaticLogger;
 class SearchController extends Controller
 {
     private Storage $storage;
-    public $view = 'search';
 
     public function __construct($route)
     {

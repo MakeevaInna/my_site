@@ -1,5 +1,5 @@
 <div class="authorization">
-    <form class="authorization-form" action="#" method="post">
+    <form class="authorization-form" action="" method="post">
         <label for="login">Логін</label>
         <input class="authorization-input" id="login" type="text" name="login" maxlength="45"
                placeholder="Введіть логін"
@@ -11,5 +11,11 @@
         <p>
             У вас немає аккаунта? - <a href="register">Зареєструйтесь!</a>
         </p>
+        <?php
+        if (!empty($_SESSION['message'])) {
+            echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';
+        }
+        unset($_SESSION['message']);
+        ?>
     </form>
 </div>

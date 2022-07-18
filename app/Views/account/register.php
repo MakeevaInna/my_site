@@ -1,5 +1,5 @@
 <div class="registration">
-    <form class="registration-form" action="#" method="post">
+    <form class="registration-form" action="" method="post">
         <label for="full_name">ФІБ</label>
         <input class="registration-input" id="full_name" type="text" name="full_name" maxlength="45"
                placeholder="Введіть ФІБ"
@@ -26,5 +26,11 @@
         <p>
             Вже маєте аккаунт? - <a href="login">Aвторизуйтесь!</a>
         </p>
+        <?php
+        if (!empty($_SESSION['message'])) {
+            echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';
+        }
+        unset($_SESSION['message']);
+        ?>
     </form>
 </div>

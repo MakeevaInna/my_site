@@ -2,13 +2,14 @@
 
 namespace Core;
 
+use Base\View;
+
 class Router
 {
-    protected static $routes = []; //таблица маршрутов
-    protected static $route = []; //текущий маршрут
-    protected static $params = [];
+    protected static array $routes = [];
+    protected static array $params = [];
 
-    public function __construct()
+    public static function init()
     {
         $arr = require ROOT . '/config/rotes.php';
         foreach ($arr as $key => $val) {
@@ -22,7 +23,7 @@ class Router
         self::$routes[$route] = $params;
     }
 
-    public static function match()
+    public static function match(): bool
     {
         $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
         $url = trim($parsedUrl['path'], '/');
@@ -35,7 +36,7 @@ class Router
         return false;
     }
 
-    public static function run()  //перенаправляет url по корректному маршруту
+    public static function run()
     {
         if (self::match()) {
             $controller = 'App\Controllers\\' . ucfirst(self::$params['controller']) . 'Controller';
@@ -52,8 +53,7 @@ class Router
                 echo "Контроллер <b>$controller</b> не найден!";
             }
         } else {
-            http_response_code(404);
-            include ROOT . 'public/404.html';
+            View::errorCode();
         }
     }
 }

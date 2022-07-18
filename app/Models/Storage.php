@@ -18,6 +18,6 @@ class Storage
                 return true;
             }
         }
-        throw new IdNotFound('Товар з артікулом ' . $id . ' не знайдено!');
+        throw new IdNotFound('Товар з артикулом ' . $id . ' не знайдено!');
     }
 }

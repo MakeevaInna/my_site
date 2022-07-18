@@ -19,6 +19,8 @@
         "squizlabs/php_codesniffer": "^3.7",
         "friendsofphp/php-cs-fixer": "3.4",
         "monolog/monolog": "^3.1",
-        "innette/logger": "dev-master"
+        "innette/logger": "dev-master",
+      "ext-pdo": "*",
+        "symfony/mailer": "^6.1"
     }
 }

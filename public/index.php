@@ -12,6 +12,8 @@ const LAYOUT = 'default';
 require ROOT . '/core/libs/functions.php';
 require ROOT . '/vendor/autoload.php';
 
+session_start();
+
 FileStaticLogger::init();
-$new = new Router();
+Router::init();
 Router::run();

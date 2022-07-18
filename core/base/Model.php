@@ -3,33 +3,30 @@
 namespace Base;
 
 use Core\DB;
+use Innette\Logger\FileStaticLogger;
 
 abstract class Model
 {
-    protected $dbConnection;
-    protected $table;
-    protected $pk = 'id';
+    protected \PDO $dbConnection;
 
     public function __construct()
     {
         $this->dbConnection = DB::getDbObject();
     }
 
-    public function query($sql)
+    public function executeSql($sql, $params = [])
     {
-        return $this->dbConnection->execute($sql);
+        try {
+            $query = $this->dbConnection->prepare($sql);
+            $query->execute($params);
+            return $query;
+        } catch (\Exception $exception) {
+            $_SESSION['message'] = 'Виникла помилка при обробці запросу!';
+            FileStaticLogger::error($exception->getMessage(), [
+                'line' => $exception->getLine(),
+                'file' => $exception->getFile()
+            ]);
+            header('Location: /');
+        }
     }
-
-    public function findAll()
-    {
-        $sql = "SELECT * FROM {$this->table}";
-        return $this->dbConnection->query($sql);
-    }
-
-//    public function findOne($id, $field = '')
-//    {
-//        $field = $field ?: $this->pk;
-//        $sql = "SELECT * FROM {$this->table} where $field = ?";
-//        return $this->dbConnection->query($sql, [$id]);
-//    }
 }

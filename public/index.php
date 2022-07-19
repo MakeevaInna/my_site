@@ -12,6 +12,9 @@ const LAYOUT = 'default';
 require ROOT . '/core/libs/functions.php';
 require ROOT . '/vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 session_start();
 
 FileStaticLogger::init();

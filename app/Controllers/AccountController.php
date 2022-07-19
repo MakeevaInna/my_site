@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Base\Controller;
+use Core\mail\MailerComponent;
 
 class AccountController extends Controller
 {
@@ -44,6 +45,7 @@ class AccountController extends Controller
                         $_POST['email'],
                         $_POST['password']
                     );
+                    MailerComponent::sendEmail($_POST['email'], $_POST['login'], $_POST['full_name']);
                     $_SESSION['message'] = 'Реєстрація пройшла успішно!';
                     $this->doRedirect('/login');
                 }

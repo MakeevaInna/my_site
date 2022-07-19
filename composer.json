@@ -21,6 +21,8 @@
         "monolog/monolog": "^3.1",
         "innette/logger": "dev-master",
       "ext-pdo": "*",
-        "symfony/mailer": "^6.1"
+        "symfony/mailer": "^6.1",
+        "vlucas/phpdotenv": "^5.4",
+        "symfony/google-mailer": "^6.1"
     }
 }

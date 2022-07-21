@@ -13,6 +13,10 @@ return [
         'controller' => 'account',
         'action' => 'register',
     ],
+    'account/confirm/([a-zA-Z0-9]+)' => [
+        'controller' => 'account',
+        'action' => 'confirm',
+    ],
     'user' => [
         'controller' => 'account',
         'action' => 'user',

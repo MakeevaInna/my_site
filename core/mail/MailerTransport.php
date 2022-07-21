@@ -8,7 +8,7 @@ use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
 
-class MailerComponent
+class MailerTransport
 {
     public static function sendEmail($email_to, $subject, $text)
     {

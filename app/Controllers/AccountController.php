@@ -3,7 +3,8 @@
 namespace App\Controllers;
 
 use Base\Controller;
-use Core\mail\MailerComponent;
+use Core\mail\MailerTransport;
+use Core\mail\Message;
 
 class AccountController extends Controller
 {
@@ -12,11 +13,16 @@ class AccountController extends Controller
 
     public function loginAction()
     {
+        $this->set([
+            'title' => 'Авторизація'
+        ]);
         if (isset($_SESSION['user'])) {
             $this->doRedirect('/user');
         } elseif (!empty($_POST)) {
             $user = $this->model->getUser($_POST['login'], $_POST['password']);
-            if ($user == false) {
+            if ($user['verify_key'] != 1) {
+                $_SESSION['message'] = 'Спочатку необхідно підтвердити email';
+            } elseif ($user == false) {
                 $_SESSION['message'] = 'Невірний логін або пароль';
             } else {
                 $_SESSION['user'] = [
@@ -30,6 +36,9 @@ class AccountController extends Controller
 
     public function registerAction()
     {
+        $this->set([
+            'title' => 'Реєстрація'
+        ]);
         if (!empty($_POST)) {
             if ($_POST['password'] === $_POST['password_confirm']) {
                 if ($this->model->loginAlreadyExists($_POST['login'])) {
@@ -39,14 +48,17 @@ class AccountController extends Controller
                     $_SESSION['message'] = 'Користувач з таким email вже існує!';
                     $this->doRedirect('/register');
                 } else {
+                    $user['verify_key'] = md5($_POST['login']);
                     $this->model->registerUser(
                         $_POST['full_name'],
                         $_POST['login'],
                         $_POST['email'],
-                        $_POST['password']
+                        $_POST['password'],
+                        $user['verify_key'],
                     );
-                    MailerComponent::sendEmail($_POST['email'], $_POST['login'], $_POST['full_name']);
-                    $_SESSION['message'] = 'Реєстрація пройшла успішно!';
+                    Message::createConfirmMessage($_POST['full_name'], $user['verify_key']);
+                    MailerTransport::sendEmail($_POST['email'], 'confirmation', Message::$message);
+                    $_SESSION['message'] = 'Реєстрація пройшла успішно! Підтвердіть свій email.';
                     $this->doRedirect('/login');
                 }
             } else {
@@ -56,9 +68,16 @@ class AccountController extends Controller
         }
     }
 
+    public function confirmAction()
+    {
+        $uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+        $this->model->confirm($uri[2]);
+    }
+
     public function userAction()
     {
         $this->set([
+            'title' => 'Кабінет',
             'isProfilePage' => true
         ]);
     }

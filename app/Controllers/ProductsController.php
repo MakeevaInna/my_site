@@ -16,6 +16,7 @@ class ProductsController extends Controller
         try {
             $product = $this->model->getProduct($code);
             $this->set([
+                'title' => 'Товари',
             'content' => $product
             ]);
         } catch (IdNotFound $exception) {
@@ -30,6 +31,7 @@ class ProductsController extends Controller
         $category = trim($_SERVER['REQUEST_URI'], '/');
         $products = $this->model->getProductsAboutCategory($category);
         $this->set([
+            'title' => 'Товари',
             'content' => $products
         ]);
     }
@@ -41,6 +43,7 @@ class ProductsController extends Controller
         try {
             $products = $this->model->getProductsAboutType($type);
             $this->set([
+                'title' => 'Товари',
             'content' => $products
             ]);
         } catch (IdNotFound $exception) {

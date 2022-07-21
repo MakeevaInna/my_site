@@ -14,7 +14,7 @@
                 <a href="/"><h2>VitaWorld</h2></a>
             </div>
             <div class="header-search">
-                <form class="search" action="search" method="GET">
+                <form class="search" action="/search" method="GET">
                     <label class="search-label">
                         <input class="search-input" type="text" name="id" placeholder=" Пошук"/>
                         <button class="search-button" type="submit"><img class="search-icon" src="/images/images-main/search.png" alt="Search"/></button>
@@ -29,16 +29,16 @@
                     <a href="#">Контакти</a>
 
                     <?php if (isset($isProfilePage)) : ?>
-                        <a href="logout"><img id="user3" src="/images/images-main/exit.png"
+                        <a href="/logout"><img id="user3" src="/images/images-main/exit.png"
                                               alt="user-profile"/></a>
                     <?php elseif (isset($_SESSION['user'])) : ?>
-                    <a href="user"><img id="user" src="/images/images-main/user2.png"
+                    <a href="/user"><img id="user" src="/images/images-main/user2.png"
                                         alt="user-profile"/></a>
                     <?php else : ?>
-                    <a href="login"><img id="user" src="/images/images-main/user.png"
+                    <a href="/login"><img id="user" src="/images/images-main/user.png"
                                          alt="login"/></a>
                     <?php endif; ?>
-                    <a href="shopping-cart.php"><img id="cart" src="/images/images-main/shopping-cart.png"
+                    <a href="/shopping-cart.php"><img id="cart" src="/images/images-main/shopping-cart.png"
                                                      alt="shopping-cart"/></a>
                 </nav>
             </div>

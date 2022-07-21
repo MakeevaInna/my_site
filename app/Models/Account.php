@@ -8,25 +8,19 @@ class Account extends Model
 {
     public function getUser($login, $password)
     {
-        $login = $_POST['login'];
-        $password = md5($_POST['password']);
         $sql = "SELECT *
                   FROM `users`
                  WHERE `login` = :login
                    AND `password` = :password";
-        $params = ['login' => $login, 'password' => $password];
+        $params = ['login' => $login, 'password' => md5($password)];
         return $this->executeSql($sql, $params)->fetch();
     }
 
-    public function registerUser($fullName, $login, $email, $password)
+    public function registerUser($fullName, $login, $email, $password, $verify_key)
     {
-        $fullName = $_POST['full_name'];
-        $login = $_POST['login'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $sql = "INSERT INTO `users` (`full_name`, `login`, `email`, `password`)
-                     VALUES (:full_name, :login, :email, :password)";
-        $params = ['full_name' => $fullName,'login' => $login, 'email' => $email, 'password' => md5($password)];
+        $sql = "INSERT INTO `users` (`full_name`, `login`, `email`, `password`, `verify_key`)
+                     VALUES (:full_name, :login, :email, :password, :verify_key)";
+        $params = ['full_name' => $fullName,'login' => $login, 'email' => $email, 'password' => md5($password), 'verify_key' => $verify_key];
         $this->executeSql($sql, $params);
     }
 
@@ -42,5 +36,11 @@ class Account extends Model
         $sql = "SELECT * FROM `users` WHERE `email` = :email";
         $params = ['email' => $email];
         return $this->executeSql($sql, $params)->fetch();
+    }
+
+    public function confirm(string $verify_key)
+    {
+        $sql = "UPDATE `users` SET `verify_key` = '1' WHERE (`verify_key` = '$verify_key')";
+        $this->executeSql($sql);
     }
 }

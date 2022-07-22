@@ -19,17 +19,21 @@ class AccountController extends Controller
         if (isset($_SESSION['user'])) {
             $this->doRedirect('/user');
         } elseif (!empty($_POST)) {
-            $user = $this->model->getUser($_POST['login'], $_POST['password']);
-            if ($user['verify_key'] != 1) {
-                $_SESSION['message'] = 'Спочатку необхідно підтвердити email';
-            } elseif ($user == false) {
-                $_SESSION['message'] = 'Невірний логін або пароль';
+            $user = $this->model->getUser($_POST['login']);
+            if ($user !== false) {
+                if ($user['verify_key'] != 1) {
+                    $_SESSION['message'] = 'Спочатку необхідно підтвердити email';
+                } elseif (!password_verify($_POST['password'], $user['password'])) {
+                    $_SESSION['message'] = 'Невірний пароль';
+                } else {
+                    $_SESSION['user'] = [
+                        'full_name' => $user['full_name'],
+                        'login' => $user['login']
+                    ];
+                    $this->doRedirect('/user');
+                }
             } else {
-                $_SESSION['user'] = [
-                    'full_name' => $user['full_name'],
-                    'login' => $user['login']
-                ];
-                $this->doRedirect('/user');
+                $_SESSION['message'] = 'Невірний логін';
             }
         }
     }
@@ -48,16 +52,17 @@ class AccountController extends Controller
                     $_SESSION['message'] = 'Користувач з таким email вже існує!';
                     $this->doRedirect('/register');
                 } else {
-                    $user['verify_key'] = md5($_POST['login']);
+                    $user['verify_key'] = md5(rand(100, 999) . $_POST['login']);
+                    $user['finite_password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                     $this->model->registerUser(
                         $_POST['full_name'],
                         $_POST['login'],
                         $_POST['email'],
-                        $_POST['password'],
+                        $user['finite_password'],
                         $user['verify_key'],
                     );
                     Message::createConfirmMessage($_POST['full_name'], $user['verify_key']);
-                    MailerTransport::sendEmail($_POST['email'], 'confirmation', Message::$message);
+                    MailerTransport::sendEmail($_POST['email'], 'Confirmation', Message::$message);
                     $_SESSION['message'] = 'Реєстрація пройшла успішно! Підтвердіть свій email.';
                     $this->doRedirect('/login');
                 }

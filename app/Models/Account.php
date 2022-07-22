@@ -6,13 +6,12 @@ use Base\Model;
 
 class Account extends Model
 {
-    public function getUser($login, $password)
+    public function getUser($login)
     {
         $sql = "SELECT *
                   FROM `users`
-                 WHERE `login` = :login
-                   AND `password` = :password";
-        $params = ['login' => $login, 'password' => md5($password)];
+                 WHERE `login` = :login";
+        $params = ['login' => $login];
         return $this->executeSql($sql, $params)->fetch();
     }
 
@@ -20,7 +19,7 @@ class Account extends Model
     {
         $sql = "INSERT INTO `users` (`full_name`, `login`, `email`, `password`, `verify_key`)
                      VALUES (:full_name, :login, :email, :password, :verify_key)";
-        $params = ['full_name' => $fullName,'login' => $login, 'email' => $email, 'password' => md5($password), 'verify_key' => $verify_key];
+        $params = ['full_name' => $fullName,'login' => $login, 'email' => $email, 'password' => $password, 'verify_key' => $verify_key];
         $this->executeSql($sql, $params);
     }
 

@@ -9,6 +9,7 @@ use Innette\Logger\FileStaticLogger;
 class ProductsController extends Controller
 {
     public mixed $view;
+    public $layout;
     public function productAction()
     {
         $uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
@@ -63,5 +64,26 @@ class ProductsController extends Controller
             'line' => $exception->getLine(),
             'file' => $exception->getFile()
         ]);
+    }
+
+    public function productsAllAction()
+    {
+//        $this->view = 'notFound';
+        $this->layout = 'json';
+        try {
+            $products = $this->model->getAllProducts();
+            echo json_encode($products, JSON_UNESCAPED_UNICODE);
+//            $this->set([
+//                'content' => $products_json
+//            ]);
+        } catch (IdNotFound $exception) {
+            $this->handleError($exception, 'Товари не знайдено!');
+        } catch (\Throwable $exception) {
+            $this->handleError($exception, 'Помилка пошуку!');
+        }
+    }
+
+    public function productsAllJsAction()
+    {
     }
 }

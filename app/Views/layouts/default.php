@@ -38,7 +38,7 @@
                     <a href="/login"><img id="user" src="/images/images-main/user.png"
                                          alt="login"/></a>
                     <?php endif; ?>
-                    <a href="/shopping-cart.php"><img id="cart" src="/images/images-main/shopping-cart.png"
+                    <a href="/cart"><img id="cart" src="/images/images-main/shopping-cart.png"
                                                      alt="shopping-cart"/></a>
                 </nav>
             </div>

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Base\Controller;
 use Core\mail\MailerTransport;
 use Core\mail\Message;
+use Core\Session;
 
 class AccountController extends Controller
 {
@@ -22,18 +23,15 @@ class AccountController extends Controller
             $user = $this->model->getUser($_POST['login']);
             if ($user !== false) {
                 if ($user['verify_key'] != 1) {
-                    $_SESSION['message'] = 'Спочатку необхідно підтвердити email';
+                    Session::set('message', 'Спочатку необхідно підтвердити email');
                 } elseif (!password_verify($_POST['password'], $user['password'])) {
-                    $_SESSION['message'] = 'Невірний пароль';
+                    Session::set('message', 'Невірний пароль');
                 } else {
-                    $_SESSION['user'] = [
-                        'full_name' => $user['full_name'],
-                        'login' => $user['login']
-                    ];
+                    Session::set('user', ['full_name' => $user['full_name'],'login' => $user['login']]);
                     $this->doRedirect('/user');
                 }
             } else {
-                $_SESSION['message'] = 'Невірний логін';
+                Session::set('message', 'Невірний логін');
             }
         }
     }
@@ -46,10 +44,10 @@ class AccountController extends Controller
         if (!empty($_POST)) {
             if ($_POST['password'] === $_POST['password_confirm']) {
                 if ($this->model->loginAlreadyExists($_POST['login'])) {
-                    $_SESSION['message'] = 'Користувач з таким логіном вже існує!';
+                    Session::set('message', 'Користувач з таким логіном вже існує!');
                     $this->doRedirect('/register');
                 } elseif ($this->model->emailAlreadyExists($_POST['email'])) {
-                    $_SESSION['message'] = 'Користувач з таким email вже існує!';
+                    Session::set('message', 'Користувач з таким email вже існує!');
                     $this->doRedirect('/register');
                 } else {
                     $user['verify_key'] = md5(rand(100, 999) . $_POST['login']);
@@ -63,11 +61,11 @@ class AccountController extends Controller
                     );
                     Message::createConfirmMessage($_POST['full_name'], $user['verify_key']);
                     MailerTransport::sendEmail($_POST['email'], 'Confirmation', Message::$message);
-                    $_SESSION['message'] = 'Реєстрація пройшла успішно! Підтвердіть свій email.';
+                    Session::set('message', 'Реєстрація пройшла успішно! Підтвердіть свій email.');
                     $this->doRedirect('/login');
                 }
             } else {
-                $_SESSION['message'] = 'Паролі не співпадають';
+                Session::set('message', 'Паролі не співпадають');
                 $this->doRedirect('/register');
             }
         }
@@ -89,7 +87,7 @@ class AccountController extends Controller
 
     public function logoutAction()
     {
-        session_destroy();
+        Session::destroy();
         $this->doRedirect('/');
     }
 }

@@ -44,7 +44,7 @@ class Products extends Model
 
     public function getAllProducts(): bool|array
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT `code`, `title`, `price`, `img` FROM products";
         return $this->executeSql($sql)->fetchAll();
     }
 }

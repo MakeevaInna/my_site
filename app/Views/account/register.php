@@ -1,15 +1,20 @@
+<?php
+
+use Core\Session;
+
+?>
 <div class="registration">
     <form class="registration-form" action="" method="post">
         <label for="full_name">ФІБ</label>
-        <input class="registration-input" id="full_name" type="text" name="full_name" maxlength="45"
+        <input class="registration-input" id="full_name" type="text" name="full_name" maxlength="50"
                placeholder="Введіть ФІБ"
                required>
         <label for="login-reg">Логін</label>
-        <input class="registration-input" id="login-reg" type="text" name="login" maxlength="45"
+        <input class="registration-input" id="login-reg" type="text" name="login" maxlength="50"
                placeholder="Введіть логін"
                required>
         <label for="email">Пошта</label>
-        <input class="registration-input" id="email" type="email" name="email" maxlength="45"
+        <input class="registration-input" id="email" type="email" name="email" maxlength="50"
                placeholder="Введіть адресу пошти" required>
         <label for="password-reg">Пароль</label>
         <input class="registration-input" id="password-reg" type="password" name="password" minlength="6"
@@ -26,11 +31,8 @@
         <p>
             Вже маєте аккаунт? - <a href="login">Aвторизуйтесь!</a>
         </p>
-        <?php
-        if (!empty($_SESSION['message'])) {
-            echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';
-        }
-        unset($_SESSION['message']);
-        ?>
+        <?php if (!empty($_SESSION['message'])) : ?>
+            <p class="msg"> <?php Session::showMessage(); ?> </p>
+        <?php  endif; ?>
     </form>
 </div>

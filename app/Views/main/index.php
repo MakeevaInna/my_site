@@ -32,6 +32,9 @@
     </div>
 </div>
 <div class="existence">
-    <a href="existence"><h4>Наявність товару на складі</h4></a>
+    <a href="/existence"><h4>Наявність товару на складі</h4></a>
+</div>
+<div class="existence">
+    <a href="/allproducts"><h4>Переглянути усі товари</h4></a>
 </div>
 

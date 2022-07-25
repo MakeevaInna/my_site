@@ -3,6 +3,7 @@
 error_reporting(-1);
 
 use Core\Router;
+use Core\Session;
 use Innette\Logger\FileStaticLogger;
 
 define('ROOT', dirname(__DIR__));
@@ -15,8 +16,7 @@ require ROOT . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-session_start();
-
+Session::start();
 FileStaticLogger::init();
 Router::init();
 Router::run();

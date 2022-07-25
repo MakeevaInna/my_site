@@ -57,6 +57,14 @@ return [
         'controller' => 'products',
         'action' => 'product',
     ],
+    'api/products' => [
+        'controller' => 'products',
+        'action' => 'productsAll',
+    ],
+    'allproducts' => [
+        'controller' => 'products',
+        'action' => 'productsAllJs',
+    ],
     'cart' => [
         'controller' => 'cart',
         'action' => 'add',

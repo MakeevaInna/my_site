@@ -638,28 +638,50 @@ body {
 }
 
 .description {
-    padding-top: 40px;
+    padding-top: 33px;
     width: 300px;
 }
 
 .description span {
     display: block;
-    font-size: 14px;
-    font-weight: bold;
+}
+
+.description-title{
+    font-size: 16px;
+    font-weight: 300;
     color: #292c2f;
 }
 
-.description span:first-child {
-    margin-bottom: 5px;
-}
-.description span:last-child {
-    font-weight: 300;
+.description-brand {
     margin-top: 8px;
+    font-size: 14px;
+    font-weight: 200;
     color: #5f6a73;
 }
-.quantity, .price  {
+
+.quantity {
+    padding-top: 48px;
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: #292c2f;
+    font-weight: 300;
+}
+.quantity input {
+    -webkit-appearance: none;
+    margin: 0px;
+    border: none;
+    text-align: center;
+    width: 40px;
+    font-size: 16px;
+    font-weight: 100;
+    color: #5f6a73;
+    outline: none;
+}
+
+.price  {
     padding-top: 50px;
-    width: 70px;
+    width: 80px;
     text-align: center;
     font-size: 16px;
     color: #292c2f;
@@ -699,4 +721,31 @@ body {
     cursor: pointer;
     font-size: 18px;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.50);
+}
+
+.cart-message {
+    background: white;
+    height: 300px;
+    width: 60%;
+    margin: 200px auto auto auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message {
+    background: rgb(179, 224, 255);
+    color: #000;
+    width: 80%;
+    padding: 20px;
+    resize: both;
+    text-align: center;
+    font-size: 18px;
+}
+
+.message a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
 }

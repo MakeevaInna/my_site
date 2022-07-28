@@ -16,10 +16,13 @@
                                                    alt="<?= $product['title'] ?>"></a>
         </div>
         <div class="description">
-            <a href="/<?= $product['code']?>"><span><?= $product['title'] ?></span></a>
-            <span><?= $product['brand'] ?></span>
+            <a href="/<?= $product['code']?>"><span class="description-title"><?= $product['title'] ?></span></a>
+            <span class="description-brand"><?= $product['brand'] ?></span>
         </div>
-        <div class="quantity"><?= $productsInCart[$product['code']] ?></div>
+<!--        <div class="quantity">--><?//= $productsInCart[$product['code']] ?><!--</div>-->
+        <div class="quantity">
+            <input type="number" min="1"  max="999" name="name" value="<?= $productsInCart[$product['code']] ?>">
+        </div>
         <div class="price"><?= $product['price'] ?> грн</div>
     </div>
     <?php endforeach; ?>
@@ -38,6 +41,15 @@
             </form>
         </div>
     </div>
-
+</div>
+<?php else : ?>
+<!--    <h1 class="products-list">-->
+<!--        Ваш кошик порожній! <br>-->
+<!--        <a href="/"> Обирайте тут </a> та повертайтеся!-->
+<!--    </h1>-->
+<div class="cart-message">
+    <div class="message">
+        На жаль, ваш кошик порожній! <a href="/">Обирайте тут</a> та повертайтеся!
+    </div>
 </div>
 <?php endif; ?>

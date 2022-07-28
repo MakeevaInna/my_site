@@ -68,14 +68,10 @@ class ProductsController extends Controller
 
     public function productsAllAction()
     {
-//        $this->view = 'notFound';
         $this->layout = 'json';
         try {
             $products = $this->model->getAllProducts();
             echo json_encode($products, JSON_UNESCAPED_UNICODE);
-//            $this->set([
-//                'content' => $products_json
-//            ]);
         } catch (IdNotFound $exception) {
             $this->handleError($exception, 'Товари не знайдено!');
         } catch (\Throwable $exception) {

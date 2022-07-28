@@ -38,8 +38,12 @@
                     <a href="/login"><img id="user" src="/images/images-main/user.png"
                                          alt="login"/></a>
                     <?php endif; ?>
-                    <a href="/cart"><img id="cart" src="/images/images-main/shopping-cart.png"
-                                                     alt="shopping-cart"/></a>
+                    <div class="header-cart">
+                    <a href="/cart"><img id="cart" src="/images/images-main/shopping-cart.png" alt="shopping-cart"/></a>
+                        <?php if (\App\Controllers\CartController::countItems()) : ?>
+                    <a href="/cart">(<?= \App\Controllers\CartController::countItems()?>)</a>
+                        <?php endif; ?>
+                    </div>
                 </nav>
             </div>
         </header>

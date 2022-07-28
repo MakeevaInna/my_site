@@ -9,8 +9,8 @@ use Core\Session;
 
 class AccountController extends Controller
 {
-    public $layout;
-    public mixed $view;
+//    public $layout;
+//    public mixed $view;
 
     public function loginAction()
     {

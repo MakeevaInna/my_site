@@ -14,7 +14,7 @@
         <div class="shopping">
             <div class="buy">
                 <h1 class="buy-h1"><?= $content['price'] ?>₴</h1>
-                <form class="buy-form">
+                <form class="buy-form" action="/cart/add/<?= $content['code'] ?>">
                     <button class="buy-button" type="submit">Купити</button>
                 </form>
                 <form class="buy-fast-form">

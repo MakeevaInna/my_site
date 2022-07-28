@@ -17,7 +17,7 @@
         <a href="/minerals"><h2>Mінерали</h2></a>
         <ul>
             <li><a href="/minerals/magnesium">Магній</a></li>
-            <li><a href="#">Селен</a></li>
+            <li><a href="minerals/potassium">Калій</a></li>
             <li><a href="#">Цинк</a></li>
         </ul>
     </div>

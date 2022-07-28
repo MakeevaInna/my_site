@@ -67,6 +67,10 @@ return [
     ],
     'cart' => [
         'controller' => 'cart',
+        'action' => 'cart',
+    ],
+    'cart/add/([0-9]+)' => [
+        'controller' => 'cart',
         'action' => 'add',
     ]
 ];

@@ -11,5 +11,6 @@ class MainController extends Controller
         $this->set([
         'title' => 'Головна сторінка'
         ]);
+        debug($_SESSION);
     }
 }

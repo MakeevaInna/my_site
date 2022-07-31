@@ -1,3 +1,4 @@
-<div class="products-category" id="product">
+<div id="app">
+    <products-list></products-list>
 </div>
-<script src="/scripts/products.js"></script>
+<script src="/js/main.js"></script>

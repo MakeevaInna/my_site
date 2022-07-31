@@ -38,3 +38,5 @@
     <a href="/allproducts"><h4>Переглянути усі товари</h4></a>
 </div>
 
+<script src="js/main.js"></script>
+

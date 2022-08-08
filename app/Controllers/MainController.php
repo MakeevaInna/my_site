@@ -6,10 +6,12 @@ use Base\Controller;
 
 class MainController extends Controller
 {
-    public function indexAction()
+    public function indexAction(): void
     {
+        $products = $this->model->getNewProducts();
         $this->set([
-        'title' => 'Головна сторінка'
+            'title' => 'Головна сторінка',
+            'content' => $products
         ]);
     }
 }

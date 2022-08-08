@@ -9,10 +9,7 @@ use Core\Session;
 
 class AccountController extends Controller
 {
-//    public $layout;
-//    public mixed $view;
-
-    public function loginAction()
+    public function loginAction(): void
     {
         $this->set([
             'title' => 'Авторизація'
@@ -27,7 +24,13 @@ class AccountController extends Controller
                 } elseif (!password_verify($_POST['password'], $user['password'])) {
                     Session::set('message', 'Невірний пароль');
                 } else {
-                    Session::set('user', ['full_name' => $user['full_name'],'login' => $user['login']]);
+                    Session::set('user', [
+                        'id' => $user['id'],
+                        'full_name' => $user['full_name'],
+                        'phone' => $user['phone'],
+                        'email' => $user['email'],
+                        'login' => $user['login'],
+                        ]);
                     $this->doRedirect('/user');
                 }
             } else {
@@ -36,7 +39,7 @@ class AccountController extends Controller
         }
     }
 
-    public function registerAction()
+    public function registerAction(): void
     {
         $this->set([
             'title' => 'Реєстрація'
@@ -55,12 +58,13 @@ class AccountController extends Controller
                     $this->model->registerUser(
                         $_POST['full_name'],
                         $_POST['login'],
+                        $_POST['phone'],
                         $_POST['email'],
                         $user['finite_password'],
                         $user['verify_key'],
                     );
                     Message::createConfirmMessage($_POST['full_name'], $user['verify_key']);
-                    MailerTransport::sendEmail($_POST['email'], 'Confirmation', Message::$message);
+                    MailerTransport::sendUserEmail($_POST['email'], 'Confirmation', Message::$message);
                     Session::set('message', 'Реєстрація пройшла успішно! Підтвердіть свій email.');
                     $this->doRedirect('/login');
                 }
@@ -71,13 +75,13 @@ class AccountController extends Controller
         }
     }
 
-    public function confirmAction()
+    public function confirmAction(): void
     {
         $uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
         $this->model->confirm($uri[2]);
     }
 
-    public function userAction()
+    public function userAction(): void
     {
         $this->set([
             'title' => 'Кабінет',
@@ -85,7 +89,7 @@ class AccountController extends Controller
         ]);
     }
 
-    public function logoutAction()
+    public function logoutAction(): void
     {
         Session::destroy();
         $this->doRedirect('/');

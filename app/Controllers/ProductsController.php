@@ -10,7 +10,7 @@ class ProductsController extends Controller
 {
     public mixed $view;
     public $layout;
-    public function productAction()
+    public function productAction(): void
     {
         $uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
         $code = $uri[1] ?? $uri[0];
@@ -27,7 +27,7 @@ class ProductsController extends Controller
         }
     }
 
-    public function categoryAction()
+    public function categoryAction(): void
     {
         $category = trim($_SERVER['REQUEST_URI'], '/');
         $products = $this->model->getProductsAboutCategory($category);
@@ -36,7 +36,7 @@ class ProductsController extends Controller
             'content' => $products
         ]);
     }
-    public function productsTypeAction()
+    public function productsTypeAction(): void
     {
         $this->view = 'category';
         $uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
@@ -66,7 +66,7 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function productsAllAction()
+    public function productsAllAction(): void
     {
         $this->layout = 'json';
         try {
@@ -79,7 +79,10 @@ class ProductsController extends Controller
         }
     }
 
-    public function productsAllJsAction()
+    public function productsAllJsAction(): void
     {
+        $this->set([
+            'title' => 'Товари',
+        ]);
     }
 }

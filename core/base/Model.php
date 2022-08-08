@@ -14,7 +14,7 @@ abstract class Model
         $this->dbConnection = DB::getDbObject();
     }
 
-    public function executeSql($sql, $params = [])
+    public function executeSql(string $sql, array $params = [])
     {
         try {
             $query = $this->dbConnection->prepare($sql);

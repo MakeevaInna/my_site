@@ -17,7 +17,7 @@
                 <form class="buy-form" action="/cart/add/<?= $content['code'] ?>">
                     <button class="buy-button" type="submit">Купити</button>
                 </form>
-                <form class="buy-fast-form">
+                <form class="buy-fast-form" action="/checkout-fast">
                     <button class="buy-fast-button" type="submit">
                         Замовити швидко
                     </button>

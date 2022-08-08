@@ -9,7 +9,7 @@ class Router
     protected static array $routes = [];
     protected static array $params = [];
 
-    public static function init()
+    public static function init(): void
     {
         $arr = require ROOT . '/config/rotes.php';
         foreach ($arr as $key => $val) {
@@ -17,7 +17,7 @@ class Router
         }
     }
 
-    public static function add($route, $params)
+    public static function add($route, $params): void
     {
         $route = '#^' . $route . '$#';
         self::$routes[$route] = $params;
@@ -28,7 +28,7 @@ class Router
         $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
         $url = trim($parsedUrl['path'], '/');
         foreach (self::$routes as $route => $params) {
-            if (preg_match($route, $url, $matches)) {
+            if (preg_match($route, $url)) {
                 self::$params = $params;
                 return true;
             }
@@ -36,7 +36,7 @@ class Router
         return false;
     }
 
-    public static function run()
+    public static function run(): void
     {
         if (self::match()) {
             $controller = 'App\Controllers\\' . ucfirst(self::$params['controller']) . 'Controller';

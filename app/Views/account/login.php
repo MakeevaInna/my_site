@@ -15,14 +15,8 @@ use Core\Session;
         <p>
             У вас немає аккаунта? - <a href="register">Зареєструйтесь!</a>
         </p>
-
-
-<!--if (!empty($_SESSION['message'])) {-->
-<!--    echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';-->
-<!--}-->
-<!--       unset($_SESSION['message']);-->
-<?php if (!empty($_SESSION['message'])) : ?>
-        <p class="msg"> <?php Session::showMessage(); ?> </p>
-<?php  endif; ?>
+        <?php if (!empty($_SESSION['message'])) : ?>
+            <p class="msg"> <?php Session::showMessage(); ?> </p>
+        <?php endif; ?>
     </form>
 </div>

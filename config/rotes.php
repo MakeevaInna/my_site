@@ -29,9 +29,17 @@ return [
         'controller' => 'search',
         'action' => 'search',
     ],
-    'existence' => [
-        'controller' => 'existence',
-        'action' => 'existence',
+    'pay' => [
+        'controller' => 'header',
+        'action' => 'pay',
+    ],
+    'delivery' => [
+        'controller' => 'header',
+        'action' => 'delivery',
+    ],
+    'about-us' => [
+        'controller' => 'header',
+        'action' => 'aboutUs',
     ],
     'vitamins' => [
         'controller' => 'products',
@@ -61,7 +69,7 @@ return [
         'controller' => 'products',
         'action' => 'productsAll',
     ],
-    'allproducts' => [
+    'all-products' => [
         'controller' => 'products',
         'action' => 'productsAllJs',
     ],
@@ -72,5 +80,33 @@ return [
     'cart/add/([0-9]+)' => [
         'controller' => 'cart',
         'action' => 'add',
-    ]
+    ],
+    'cart/delete/([0-9]+)' => [
+        'controller' => 'cart',
+        'action' => 'delete',
+    ],
+    'cart/increment/([0-9]+)' => [
+        'controller' => 'cart',
+        'action' => 'incrementAmount',
+    ],
+    'cart/decrement/([0-9]+)' => [
+    'controller' => 'cart',
+    'action' => 'decrementAmount',
+    ],
+    'cart/checkout' => [
+        'controller' => 'cart',
+        'action' => 'checkout',
+    ],
+    'checkout-fast' => [
+        'controller' => 'cart',
+        'action' => 'checkoutFast',
+    ],
+    'checkout-successful' => [
+        'controller' => 'cart',
+        'action' => 'checkoutSuccessful',
+    ],
+    'checkout-fast-successful' => [
+        'controller' => 'cart',
+        'action' => 'checkoutFastSuccessful',
+    ],
 ];

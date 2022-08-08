@@ -17,8 +17,8 @@
         <a href="/minerals"><h2>Mінерали</h2></a>
         <ul>
             <li><a href="/minerals/magnesium">Магній</a></li>
-            <li><a href="minerals/potassium">Калій</a></li>
-            <li><a href="#">Цинк</a></li>
+            <li><a href="/minerals/potassium">Калій</a></li>
+            <li><a href="/minerals/zinc">Цинк</a></li>
         </ul>
     </div>
     <div class="other">
@@ -31,9 +31,23 @@
         </ul>
     </div>
 </div>
-<div class="existence">
-    <a href="/existence"><h4>Наявність товару на складі</h4></a>
+<div class="new-products-h2">
+    <h2>Новинки</h2>
 </div>
-<div class="existence">
-    <a href="/allproducts"><h4>Переглянути усі товари</h4></a>
+<div class="new-products">
+    <?php if (!empty($content)) : ?>
+        <?php foreach ($content as $product) : ?>
+            <div class="products-category-1">
+                <a href="/<?= $product['code'] ?>"><img src="/<?= $product['img'] ?>"
+                                                        alt="<?= $product['title'] ?>"></a>
+                <a href="/<?= $product['code'] ?>"><h5><?= $product['title'] ?></h5></a>
+                <p><?= $product['price'] ?> грн.</p>
+                <a href="/cart/add/<?= $product['code'] ?>" data-id="<?= $product['code'] ?>">Купити
+                </a>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+<div class="products-all">
+    <a href="/all-products"><h2>Переглянути усі товари</h2></a>
 </div>

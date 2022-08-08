@@ -15,7 +15,7 @@ class View
         $this->view = $view;
     }
 
-    public function render($vars)
+    public function render($vars): void
     {
         if (is_array($vars)) {
             extract($vars); //извлекаем ключ-значение из массива и делаем из них переменная-значение
@@ -25,29 +25,29 @@ class View
         if (is_file($file_view)) {
             require $file_view;
         } else {
-            echo "Не найден $file_view"; // exception
+            echo "Не найден $file_view";
         }
         $content = ob_get_clean();
         $file_layout = APP . "/Views/layouts/{$this->layout}.php";
         if (is_file($file_layout)) {
             require $file_layout;
         } else {
-            echo "Не найден $file_layout"; // exception
+            echo "Не найден $file_layout";
         }
     }
 
-    public function redirect($url)
+    public function redirect(string $url): void
     {
         header('Location:' . $url);
         exit();
     }
 
-    public static function errorCode()
+    public static function errorCode(): void
     {
         if (file_exists(APP . '/Views/error/404.php')) {
             http_response_code(404);
             require APP . '/Views/error/404.php';
-            exit;
+            exit();
         }
     }
 }

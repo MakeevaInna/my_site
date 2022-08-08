@@ -11,7 +11,7 @@ class Storage
     {
         $this->storage = $storage;
     }
-    public function vitaminExists($id): bool
+    public function vitaminExists(int $id): bool
     {
         foreach ($this->storage as $key => $count) {
             if ($key == $id) {

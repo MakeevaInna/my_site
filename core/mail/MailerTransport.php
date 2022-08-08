@@ -10,7 +10,7 @@ use Symfony\Component\Mime\Email;
 
 class MailerTransport
 {
-    public static function sendEmail($email_to, $subject, $text)
+    public static function sendUserEmail($email_to, $subject, $text): void
     {
         $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
         $mailer = new Mailer($transport);
@@ -18,6 +18,31 @@ class MailerTransport
         $email = (new Email())
             ->from('vitaworldonline@gmail.com')
             ->to($email_to)
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject($subject)
+//            ->text($text)
+            ->html($text);
+        try {
+            $mailer->send($email);
+        } catch (TransportExceptionInterface $e) {
+            FileStaticLogger::info($e->getMessage(), [
+                'line' => $e->getLine(),
+                'file' => $e->getFile()
+            ]);
+        }
+    }
+
+    public static function sendOrder($subject, $text): void
+    {
+        $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
+        $mailer = new Mailer($transport);
+
+        $email = (new Email())
+            ->from('vitaworldonline@gmail.com')
+            ->to('vitaworldonline@gmail.com')
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')

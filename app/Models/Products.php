@@ -7,7 +7,7 @@ use Exceptions\IdNotFound;
 
 class Products extends Model
 {
-    public function getProduct($code)
+    public function getProduct($code): array
     {
         $sql = "SELECT *
                   FROM `products`
@@ -29,7 +29,7 @@ class Products extends Model
         return $this->executeSql($sql, $params)->fetchAll();
     }
 
-    public function getProductsAboutType($type): bool|array
+    public function getProductsAboutType($type): array
     {
         $sql = "SELECT *
                   FROM `products`

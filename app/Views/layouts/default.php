@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title><?php $title ?></title>
+    <title><?= $title ?></title>
     <link rel="stylesheet" href="/styles/style.css?ver=1"/>
 </head>
 <body>
@@ -17,38 +17,41 @@
                 <form class="search" action="/search" method="GET">
                     <label class="search-label">
                         <input class="search-input" type="text" name="id" placeholder=" Пошук"/>
-                        <button class="search-button" type="submit"><img class="search-icon" src="/images/images-main/search.png" alt="Search"/></button>
+                        <button class="search-button" type="submit"><img class="search-icon"
+                                                                         src="/images/images-main/search.png"
+                                                                         alt="Search"/></button>
                     </label>
                 </form>
             </div>
             <div class="header-links">
                 <nav class="nav-header">
-                    <a href="#">063-663-33-33</a>
-                    <a href="#">Оплата</a>
-                    <a href="#">Доставка</a>
-                    <a href="#">Контакти</a>
+                    <h4>063-663-33-33</h4>
+                    <a href="/pay">Оплата</a>
+                    <a href="/delivery">Доставка</a>
+                    <a href="/about-us">Про нас</a>
 
                     <?php if (isset($isProfilePage)) : ?>
                         <a href="/logout"><img id="user3" src="/images/images-main/exit.png"
-                                              alt="user-profile"/></a>
+                                               alt="user-profile"/></a>
                     <?php elseif (isset($_SESSION['user'])) : ?>
-                    <a href="/user"><img id="user" src="/images/images-main/user2.png"
-                                        alt="user-profile"/></a>
+                        <a href="/user"><img id="user" src="/images/images-main/user2.png"
+                                             alt="user-profile"/></a>
                     <?php else : ?>
-                    <a href="/login"><img id="user" src="/images/images-main/user.png"
-                                         alt="login"/></a>
+                        <a href="/login"><img id="user" src="/images/images-main/user.png"
+                                              alt="login"/></a>
                     <?php endif; ?>
                     <div class="header-cart">
-                    <a href="/cart"><img id="cart" src="/images/images-main/shopping-cart.png" alt="shopping-cart"/></a>
+                        <a href="/cart"><img id="cart" src="/images/images-main/shopping-cart.png"
+                                             alt="shopping-cart"/></a>
                         <?php if (\App\Controllers\CartController::countItems()) : ?>
-                    <a href="/cart">(<?= \App\Controllers\CartController::countItems()?>)</a>
+                            <a href="/cart">(<?= \App\Controllers\CartController::countItems() ?>)</a>
                         <?php endif; ?>
                     </div>
                 </nav>
             </div>
         </header>
 
-        <?=$content?>
+        <?= $content ?>
 
     </div>
     <div class="footer">

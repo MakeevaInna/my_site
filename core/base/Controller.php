@@ -17,7 +17,7 @@ abstract class Controller
         $this->model = $this->loadModel($route['controller']);
     }
 
-    public function loadModel($name)
+    public function loadModel(string $name)
     {
         $path = 'App\Models\\' . ucfirst($name);
         if (class_exists($path)) {
@@ -25,19 +25,19 @@ abstract class Controller
         }
     }
 
-    public function getView()
+    public function getView(): void
     {
         $vObj = new View($this->route, $this->layout, $this->view);
         $vObj->render($this->vars);
     }
 
-    public function doRedirect($url)
+    public function doRedirect(string $url): void
     {
         $vObj = new View($this->route, $this->layout, $this->view);
         $vObj->redirect($url);
     }
 
-    public function set($vars)
+    public function set($vars): void
     {
         $this->vars = $vars;
     }

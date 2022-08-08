@@ -18,7 +18,7 @@ class SearchController extends Controller
         $this->storage = new Storage($storageArray);
     }
 
-    public function searchAction()
+    public function searchAction(): void
     {
         $resultMessage = '';
         $id = (int) $_GET['id'];
@@ -41,7 +41,8 @@ class SearchController extends Controller
             ]);
         }
         $this->set([
-            'content' => $resultMessage
+            'content' => $resultMessage,
+            'title' => 'Пошук',
         ]);
     }
 }
